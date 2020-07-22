@@ -1,6 +1,9 @@
 package manager
 
 import (
+	"fmt"
+
+	"github.com/go-acme/lego/v3/log"
 	"github.com/micro/go-micro/v2/cmd"
 	"github.com/micro/go-micro/v2/logger"
 	"github.com/micro/go-micro/v2/runtime"
@@ -51,6 +54,8 @@ func (m *manager) Read(opts ...runtime.ReadOption) ([]*runtime.Service, error) {
 	for _, o := range opts {
 		o(&options)
 	}
+	fmt.Println("are printlines displayed?")
+	log.Infof("manager.Read namespace %v service %v", options.Namespace, options.Service)
 	if len(options.Namespace) == 0 {
 		options.Namespace = namespace.DefaultNamespace
 	}
